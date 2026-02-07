@@ -1,172 +1,29 @@
 <!DOCTYPE html>
-<html lang="es">
+<html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Propuesta Especial ❤️</title>
-    <style>
-        body {
-            margin: 0;
-            padding: 0;
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            justify-content: center;
-            height: 100vh;
-            background-color: #ffeef2;
-            font-family: 'Arial', sans-serif;
-            overflow: hidden;
-            text-align: center;
-        }
-
-        #contenedor {
-            z-index: 10;
-            padding: 20px;
-        }
-
-        h1 {
-            color: #d63384;
-            font-size: 2rem;
-            margin-bottom: 20px;
-            text-shadow: 2px 2px 4px rgba(0,0,0,0.1);
-        }
-
-        .botones {
-            display: flex;
-            flex-wrap: wrap;
-            gap: 15px;
-            justify-content: center;
-            align-items: center;
-        }
-
-        #btnSi {
-            background-color: #ff4d6d;
-            color: white;
-            border: none;
-            padding: 15px 30px;
-            font-size: 1.2rem;
-            border-radius: 50px;
-            cursor: pointer;
-            box-shadow: 0 4px 15px rgba(255, 77, 109, 0.4);
-            transition: all 0.2s ease;
-        }
-
-        #btnNo {
-            background-color: #6c757d;
-            color: white;
-            border: none;
-            padding: 15px 30px;
-            font-size: 1.2rem;
-            border-radius: 50px;
-            cursor: pointer;
-            position: relative;
-            transition: 0.1s;
-            touch-action: none;
-        }
-
-        #mensajeOculto {
-            display: none;
-            position: fixed;
-            top: 50%;
-            left: 50%;
-            transform: translate(-50%, -50%);
-            width: 100%;
-            z-index: 20;
-        }
-
-        .corazon {
-            position: fixed;
-            top: -10vh;
-            font-size: 2rem;
-            user-select: none;
-            pointer-events: none;
-            animation: caer linear forwards;
-            z-index: 5;
-        }
-
-        @keyframes caer {
-            to {
-                transform: translateY(110vh) rotate(360deg);
-            }
-        }
-    </style>
-</head>
-<body>
-
-    <div id="contenedor">
-        <h1 id="titulo">¿Quieres ser mi San Valentín? ❤️</h1>
-        <div class="botones">
-            <button id="btnSi">¡SÍ! 😍</button>
-            <button id="btnNo">No 😢</button>
-        </div>
-    </div>
-
-    <div id="mensajeOculto">
-        <h1 style="font-size: 3rem;">¡SABÍA QUE DIRÍAS QUE SÍ! 🌹✨</h1>
-        <p style="font-size: 5rem;">💖</p>
-    </div>
-
+    <title>Romantic Proposal</title>
     <script>
-        const btnSi = document.getElementById('btnSi');
-        const btnNo = document.getElementById('btnNo');
-        const contenedor = document.getElementById('contenedor');
-        const mensajeOculto = document.getElementById('mensajeOculto');
-
-        let siFontSize = 1.2;
-        let siPadding = 15;
-
-        function evitarNo() {
-            const x = Math.random() * (window.innerWidth - btnNo.offsetWidth);
-            const y = Math.random() * (window.innerHeight - btnNo.offsetHeight);
-            
-            btnNo.style.position = "absolute";
-            btnNo.style.left = x + "px";
-            btnNo.style.top = y + "px";
-
-            siFontSize += 0.3;
-            siPadding += 8;
-            btnSi.style.fontSize = siFontSize + "rem";
-            btnSi.style.padding = siPadding + "px " + (siPadding * 2) + "px";
-            
-            if(siFontSize > 5) {
-                btnSi.style.zIndex = "100";
-            }
-        }
-
-        btnNo.addEventListener('mouseover', evitarNo);
-        btnNo.addEventListener('touchstart', (e) => {
-            e.preventDefault();
-            evitarNo();
-        });
-
-        btnSi.addEventListener('click', () => {
-            contenedor.style.display = 'none';
-            btnNo.style.display = 'none';
-            mensajeOculto.style.display = 'block';
-            
-            setInterval(crearCorazon, 150);
-        });
-
-        function crearCorazon() {
-            const corazon = document.createElement('div');
-            corazon.classList.add('corazon');
-            corazon.innerHTML = '❤️';
-            
-            corazon.style.left = Math.random() * 100 + "vw";
-            corazon.style.fontSize = (Math.random() * 20 + 20) + "px";
-            
-            const duracion = Math.random() * 3 + 2;
-            corazon.style.animationDuration = duracion + "s";
-            
-            const colores = ['#ff4d6d', '#ff758f', '#ff8fa3', '#c9184a', '#ffb3c1'];
-            corazon.style.color = colores[Math.floor(Math.random() * colores.length)];
-            
-            document.body.appendChild(corazon);
-
-            setTimeout(() => {
-                corazon.remove();
-            }, duracion * 1000);
+        let noClickCounter = 0;
+        function handleNoClick() {
+            noClickCounter++;
+            const messages = [
+                "But I'm really hoping you'll say yes!", 
+                "What if I promise to cook dinner every weekend?", 
+                "You deserve all the love and happiness!", 
+                "Think about all the amazing moments we could share!", 
+                "I'm confident that together, we can create something beautiful!"
+            ];
+            alert(messages[noClickCounter % messages.length]);
         }
     </script>
+</head>
+<body>
+    <h1>My Dear,</h1>
+    <p>Every moment we spend together is a treasure. I want to create more beautiful memories with you.</p>
+    <p>Will you join me for a romantic dinner? Let’s make it a night to remember!</p>
+    <button onclick="handleNoClick()">No</button>
+    <button onclick="alert('Yay! I’m so happy you said yes!')">Yes</button>
 </body>
 </html>
